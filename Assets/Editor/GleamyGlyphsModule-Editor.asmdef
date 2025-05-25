@@ -1,0 +1,10 @@
+{
+  "name": "GleamyGlyphsModule-Editor",
+  "references": [
+    "GleamyGlyphsModule"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": []
+}
