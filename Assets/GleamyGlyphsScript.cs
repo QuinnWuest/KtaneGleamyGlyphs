@@ -65,7 +65,7 @@ public class GleamyGlyphsScript : MonoBehaviour
     private List<int> _nums = new List<int>();
     private int _correctPosition;
     private static readonly string[] _positionNames = new string[] { "top-left", "top-right", "middle-left", "middle", "middle-right", "bottom-left", "bottom-right" };
-    private bool[] _clicked = new bool[7];
+    private readonly bool[] _clicked = new bool[7];
 
     private void Start()
     {
@@ -83,12 +83,12 @@ public class GleamyGlyphsScript : MonoBehaviour
             rnd.Next(0, 4);
             rnd.Next(0, 8);
         }
-        bool isDistinct = false;
-        while (!isDistinct)
+        bool distinct = false;
+        while (!distinct)
         {
             var tempHexes = new List<List<int>>();
             rnd.ShuffleFisherYates(_nums);
-            isDistinct = true;
+            distinct = true;
             for (int i = 0; i < _hexIxs.Length; i++)
             {
                 var arr = new List<int>();
@@ -96,13 +96,13 @@ public class GleamyGlyphsScript : MonoBehaviour
                     arr.Add(_nums[_hexIxs[i][j]]);
                 if (!IsOkayHexagon(arr))
                 {
-                    isDistinct = false;
+                    distinct = false;
                     break;
                 }
                 arr.OrderBy(x => x);
                 if (tempHexes.Any(x => arr.SequenceEqual(x)))
-                    isDistinct = false;
-                if (!isDistinct)
+                    distinct = false;
+                if (!distinct)
                     break;
                 tempHexes.Add(arr);
             }
